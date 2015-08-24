@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+
+<%= image_tag @ad.img_url.url(:medium) %>
+
+<p>
+  <strong>Title:</strong>
+  <%= @ad.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @ad.description %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @ad.price %>
+</p>
+
+<p>
+  <strong>Img url:</strong>
+  <%= @ad.img_url %>
+</p>
+
+<%= link_to 'Edit', edit_ad_path(@ad) %> |
+<%= link_to 'Back', root_path %>

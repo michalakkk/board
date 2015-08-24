@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Latest Ads</h1>
+
+    <% @ads.each do |ad| %>
+	    <div class="container">
+	    	<div class="col-xs-2">
+	    		<%= image_tag ad.img_url.url(:thumb) %>
+	    	</div>
+	    	<div class="col-xs-6">
+	      	<h2><%= link_to ad.title, ad %></h2>
+	      </div>
+	      <div class="col-xs-2">
+	      	<h3><%= ad.price %></h3>
+	    	</div>
+	    	<div class="col-xs-2">
+		      <h5>
+		      <%= link_to 'Show', ad %>
+		      <%= link_to 'Edit', edit_ad_path(ad) %>
+		      <%= link_to 'Destroy', ad, method: :delete, data: { confirm: 'Are you sure?' } %>
+	    		</h5>
+	    	</div>
+	    </div>
+	  	</br>
+    <% end %>
+
+<br>
+
+<%= will_paginate @ads %>
+

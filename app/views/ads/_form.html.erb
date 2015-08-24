@@ -1,0 +1,9 @@
+<%= simple_form_for(@ad, html: { multipart:true, class: 'form-horizontal'}) do |f| %>
+  <%= f.collection_select :category_id, Category.all, :id, :name, {promt: "Choose a category"} %>
+  <%= f.input :title, label: "Ad Title" %>
+  <%= f.input :description, label: "Ad Description" %>
+  <%= f.input :price, label: "Price" %>
+  <%= f.file_field :img_url %>
+  <%= f.button :submit %>
+<% end %>
+
