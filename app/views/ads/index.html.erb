@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Latest Ads</h1>
-
+	<ul>
     <% @ads.each do |ad| %>
-	    <div class="container">
+	    <li class="listing">
 	    	<div class="col-xs-2">
 	    		<%= image_tag ad.img_url.url(:thumb) %>
 	    	</div>
@@ -11,7 +11,7 @@
 	      	<h2><%= link_to ad.title, ad %></h2>
 	      </div>
 	      <div class="col-xs-2">
-	      	<h3><%= ad.price %></h3>
+	      	<h3><%= number_to_currency(ad.price) %></h3>
 	    	</div>
 	    	<div class="col-xs-2">
 		      <h5>
@@ -20,11 +20,13 @@
 		      <%= link_to 'Destroy', ad, method: :delete, data: { confirm: 'Are you sure?' } %>
 	    		</h5>
 	    	</div>
-	    </div>
+	    </li>
 	  	</br>
     <% end %>
-
+  </ul>
 <br>
 
-<%= will_paginate @ads %>
+<%= will_paginate @ads, renderer: BootstrapPagination::Rails %>
+
+
 

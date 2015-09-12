@@ -4,13 +4,12 @@ class AdsController < ApplicationController
   # GET /ads
   # GET /ads.json
   def index
-    if params[:category].blank?
-      @ads = Ad.all.order("created_at DESC").paginate(:page => params[:page])
-    else
-      @category_id = Category.find_by(name: params[:category]).id
-      @ads = Ad.where(category_id: @category_id).order("created_at DESC").paginate(:page => params[:page])
 
-    end
+    @ads = Ad.order("created_at DESC")
+    @ads = @ads.joins(:category).where(categories: { name: params[:category] }) if params[:category].present?
+    @ads = @ads.search(params[:search]) if params[:search].present?
+    @ads = @ads.paginate(page: params[:page], per_page: 10)
+
   end
 
   # GET /ads/1
