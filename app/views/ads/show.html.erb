@@ -4,6 +4,10 @@
 <%= image_tag @ad.img_url.url(:medium) %>
 
 <p>
+  <strong>User:</strong> <%= @ad.user.email %>
+</p>
+
+<p>
   <strong>Title:</strong>
   <%= @ad.title %>
 </p>
@@ -23,5 +27,9 @@
   <%= @ad.img_url %>
 </p>
 
-<%= link_to 'Edit', edit_ad_path(@ad) %> |
+<% if @ad.user == current_user %>
+	<%= link_to 'Destroy', @ad, method: :delete, data: { confirm: 'Are you sure?' } %> |
+	<%= link_to 'Edit', edit_ad_path(@ad) %> |
+<% end %>
+
 <%= link_to 'Back', root_path %>

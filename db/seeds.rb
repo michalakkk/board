@@ -6,7 +6,8 @@ Ad.destroy_all
 		title: Faker::Commerce.product_name,
 		description: Faker::Lorem.paragraphs,
 		price: Faker::Number.decimal(2),
-		category_id: 1 + rand(6)
+		category_id: 1 + rand(6),
+		user_id: 1 + rand(2)
 		)
 end
 

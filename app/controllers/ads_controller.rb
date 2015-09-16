@@ -1,5 +1,6 @@
 class AdsController < ApplicationController
   before_action :set_ad, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /ads
   # GET /ads.json
@@ -19,7 +20,7 @@ class AdsController < ApplicationController
 
   # GET /ads/new
   def new
-    @ad = Ad.new
+    @ad = current_user.ads.build
   end
 
   # GET /ads/1/edit
@@ -29,7 +30,7 @@ class AdsController < ApplicationController
   # POST /ads
   # POST /ads.json
   def create
-    @ad = Ad.new(ad_params)
+    @ad = current_user.ads.build(ad_params)
 
     respond_to do |format|
       if @ad.save

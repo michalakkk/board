@@ -8,15 +8,16 @@
 </head>
 <body>
 
-
 	<nav class="navbar navbar-default">
 		<div class="container">
 			<%= link_to 'Board', root_path, class: "navbar-brand" %>
 			<%= link_to 'New Board Ad', new_ad_path, class: "navbar-text navbar-right navbar-link" %>
+			<%= link_to 'Sign up', new_user_registration_path, class: "navbar-right navbar-text" %>
+			<%= link_to 'Sign in', new_user_session_path, class: "navbar-right navbar-text" %>
 		</div>
 	</nav>
 
-<div class="container">
+<div class="container search-container">
 	<%= form_tag(ads_path, :method => "get", class: "navbar-form", id: "search-form") do %>
     <div class="input-append search-wrapper">
       <%= text_field_tag :search, params[:search], class: "span2 form-control search-field", placeholder: "Search Ads" %>
@@ -34,7 +35,8 @@
 	<% end %>
 </ul>
 
-
+	<p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
 
 	<%= yield %>
 </div>
